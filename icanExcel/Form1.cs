@@ -3,6 +3,7 @@
 //Lunes 24 de Octubre del 2022
 
 using SpreadsheetLight;
+using System.Windows.Forms;
 
 namespace icanExcel
 {
@@ -18,6 +19,14 @@ namespace icanExcel
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveD = new SaveFileDialog();
+            saveD.Filter = "Excel Files|*.xls;*.xlsx";
+            saveD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (saveD.ShowDialog() == DialogResult.OK)
+            {
+
+            }
 
         }
 
@@ -57,7 +66,7 @@ namespace icanExcel
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.Name = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
                         bDatos.Email = sl.GetCellValueAsString(iRow, 3);
                         bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
                         bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
@@ -103,7 +112,7 @@ namespace icanExcel
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.Name = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
                         bDatos.Email = sl.GetCellValueAsString(iRow, 3);
                         bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
                         bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
@@ -122,6 +131,15 @@ namespace icanExcel
                 MessageBox.Show(ex.Message, "Important Note", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
 
+        }
+
+        private void btnMore_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Form frm = new Form();
+
+            frm.Show();
         }
     }
 }

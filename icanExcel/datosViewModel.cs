@@ -8,7 +8,7 @@ namespace icanExcel
 {
     public class datosViewModel
     {
-        public string Name { get; set; }
+        public string ID { get; set; }
         public string Email { get; set; }
         public string Billing_Phone { get; set; }
         public string Billing_Name { get; set; }
