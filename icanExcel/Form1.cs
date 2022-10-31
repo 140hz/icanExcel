@@ -57,7 +57,7 @@ namespace icanExcel
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.Name = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
                         bDatos.Email = sl.GetCellValueAsString(iRow, 3);
                         bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
                         bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
@@ -103,7 +103,7 @@ namespace icanExcel
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.Name = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
                         bDatos.Email = sl.GetCellValueAsString(iRow, 3);
                         bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
                         bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
