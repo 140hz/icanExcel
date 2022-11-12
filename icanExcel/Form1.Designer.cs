@@ -1,6 +1,6 @@
 ﻿namespace icanExcel
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.datagridExcel1 = new System.Windows.Forms.DataGridView();
             this.btnGenExcel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnMore = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnAyuda = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagridExcel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridExcel2)).BeginInit();
             this.SuspendLayout();
@@ -58,10 +60,11 @@
             // 
             // btnGenExcel
             // 
+            this.btnGenExcel.Enabled = false;
             this.btnGenExcel.Location = new System.Drawing.Point(296, 483);
             this.btnGenExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenExcel.Name = "btnGenExcel";
-            this.btnGenExcel.Size = new System.Drawing.Size(128, 70);
+            this.btnGenExcel.Size = new System.Drawing.Size(125, 70);
             this.btnGenExcel.TabIndex = 1;
             this.btnGenExcel.Text = "Generar CSV / XLSX";
             this.btnGenExcel.UseVisualStyleBackColor = true;
@@ -105,6 +108,7 @@
             // 
             // btnExcel2
             // 
+            this.btnExcel2.Enabled = false;
             this.btnExcel2.Location = new System.Drawing.Point(543, 255);
             this.btnExcel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExcel2.Name = "btnExcel2";
@@ -116,6 +120,7 @@
             // 
             // archivox1
             // 
+            this.archivox1.Enabled = false;
             this.archivox1.Location = new System.Drawing.Point(115, 57);
             this.archivox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.archivox1.Name = "archivox1";
@@ -124,6 +129,7 @@
             // 
             // archivox2
             // 
+            this.archivox2.Enabled = false;
             this.archivox2.Location = new System.Drawing.Point(115, 257);
             this.archivox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.archivox2.Name = "archivox2";
@@ -146,7 +152,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 15);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Ingresa los archivos excel";
+            this.label3.Text = "Ingresa los archivos Excel";
             // 
             // btnMore
             // 
@@ -159,11 +165,22 @@
             this.btnMore.UseVisualStyleBackColor = true;
             this.btnMore.Click += new System.EventHandler(this.btnMore_Click);
             // 
-            // Form1
+            // btnAyuda
+            // 
+            this.btnAyuda.Location = new System.Drawing.Point(12, 530);
+            this.btnAyuda.Name = "btnAyuda";
+            this.btnAyuda.Size = new System.Drawing.Size(49, 23);
+            this.btnAyuda.TabIndex = 13;
+            this.btnAyuda.Text = "Ayuda";
+            this.btnAyuda.UseVisualStyleBackColor = true;
+            this.btnAyuda.Click += new System.EventHandler(this.btnAyuda_Click);
+            // 
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 565);
+            this.Controls.Add(this.btnAyuda);
             this.Controls.Add(this.btnMore);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -175,8 +192,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGenExcel);
             this.Controls.Add(this.datagridExcel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.MaximizeBox = false;
+            this.Name = "mainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ICAN Excel";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridExcel1)).EndInit();
@@ -201,5 +221,6 @@
         private Label label3;
         private Button btnMore;
         private SaveFileDialog saveFileDialog1;
+        private Button btnAyuda;
     }
 }

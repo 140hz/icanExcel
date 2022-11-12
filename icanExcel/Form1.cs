@@ -2,30 +2,57 @@
 //b7sed
 //Lunes 24 de Octubre del 2022
 
+using DocumentFormat.OpenXml.Wordprocessing;
 using SpreadsheetLight;
 using System.Windows.Forms;
 
 namespace icanExcel
 {
-    public partial class Form1 : Form
+    public partial class mainForm : Form
     {
-        //private string archivoExcel = @"C:\\Users\\oscar\\Documents\\ICAN\\icanExcel\\icanExcel\\prueba.xlsx";
-        //private string path = @"c:\";
         
-        public Form1()
+        private string path = @"c:\";
+        private string path2 = @"c:\";
+        public mainForm()
         {
             InitializeComponent();
+            /*MessageBox.Show("¿Primera vez utilizando esta herramienta? Da click en el botón AYUDA para más información.", "Bienvenido",
+            MessageBoxButtons.OK, MessageBoxIcon.Warning);*/
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveD = new SaveFileDialog();
-            saveD.Filter = "Excel Files|*.xls;*.xlsx";
-            saveD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            if (saveD.ShowDialog() == DialogResult.OK)
+            try
             {
+                SaveFileDialog saveD = new SaveFileDialog();
+                saveD.Filter = "Excel Files|.xls;.xlsx";
+                saveD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+                if (saveD.ShowDialog() == DialogResult.OK)
+                {
+                    SLDocument originalDoc = new SLDocument();
+                    SLDocument sheetDoc = new SLDocument();
+
+
+                    int iRow = 1;
+
+                    while (!string.IsNullOrEmpty(originalDoc.GetCellValueAsString(iRow, 1)))
+                    {
+
+                    }
+
+                    sheetDoc.SaveAs("MahNewShoes.xlsx");
+                    MessageBox.Show("Archivo guardado existosamente en " + saveD.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un ERROR al guardar el archivo, vuelve a intentarlo");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Important Note", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
             }
 
         }
@@ -42,12 +69,12 @@ namespace icanExcel
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = @"";
+            btnExcel2.Enabled = true;
             try
             {
                 OpenFileDialog of = new OpenFileDialog();
                 of.InitialDirectory = @"c:\";
-                of.Filter = "CSV files (*.csv)|*.csv|Excel Files|*.xls;*.xlsx;*.xlsm";
+                of.Filter = "Excel Files|*.xls;*.xlsx|CSV files (*.csv)|*.csv";
                 of.FilterIndex = 1;
                 of.RestoreDirectory = true;
                 of.CheckFileExists = true;
@@ -65,13 +92,16 @@ namespace icanExcel
 
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
+                        //string fecha = "2005/05/05 22:12 PM";
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
-                        bDatos.Email = sl.GetCellValueAsString(iRow, 3);
-                        bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
-                        bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 1);
+                        bDatos.Email = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 16);
+                        bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 25);
                         bDatos.Fulfilled_at = sl.GetCellValueAsString(iRow, 6);
-                        bDatos.Notes = sl.GetCellValueAsString(iRow, 7);
+                        //DateTime oDate = DateTime.ParseExact(fecha, "yyyy/MM/dd HH:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+                        //box1.Text = (oDate.ToString());
+                        bDatos.Notes = sl.GetCellValueAsString(iRow, 45);
 
                         list.Add(bDatos);
                         iRow++;
@@ -88,7 +118,7 @@ namespace icanExcel
 
         private void btnExcel2_Click(object sender, EventArgs e)
         {
-            string path = @"";
+            btnGenExcel.Enabled = true;
             try
             {
                 OpenFileDialog of = new OpenFileDialog();
@@ -101,9 +131,9 @@ namespace icanExcel
                 
                 if (of.ShowDialog() == DialogResult.OK)
                 {
-                    path = of.FileName;
-                    archivox2.Text = path;
-                    SLDocument sl = new SLDocument(path);
+                    path2 = of.FileName;
+                    archivox2.Text = path2;
+                    SLDocument sl = new SLDocument(path2);
 
                     int iRow = 2;
                     List<datosViewModel> list = new List<datosViewModel>();
@@ -111,13 +141,16 @@ namespace icanExcel
 
                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
                     {
+                        //string fecha = "2005/05/05 22:12 PM";
                         datosViewModel bDatos = new datosViewModel();
-                        bDatos.ID = sl.GetCellValueAsString(iRow, 2);
-                        bDatos.Email = sl.GetCellValueAsString(iRow, 3);
-                        bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 4);
-                        bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 5);
+                        bDatos.ID = sl.GetCellValueAsString(iRow, 1);
+                        bDatos.Email = sl.GetCellValueAsString(iRow, 2);
+                        bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 16);
+                        bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 25);
                         bDatos.Fulfilled_at = sl.GetCellValueAsString(iRow, 6);
-                        bDatos.Notes = sl.GetCellValueAsString(iRow, 7);
+                        //DateTime oDate = DateTime.ParseExact(fecha, "yyyy/MM/dd HH:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+                        //box1.Text = (oDate.ToString());
+                        bDatos.Notes = sl.GetCellValueAsString(iRow, 45);
 
                         list.Add(bDatos);
                         iRow++;
@@ -136,10 +169,19 @@ namespace icanExcel
         private void btnMore_Click(object sender, EventArgs e)
         {
             this.Hide();
-
-            Form frm = new Form();
-
+            Form frm = new FormArchivos();
+            Button regresar = new Button();
+            regresar.Text = "regresar";
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
+        }
+
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            Form frm = new formAyuda();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+            
         }
     }
 }
