@@ -23,26 +23,35 @@ namespace icanExcel
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<datosViewModel> list = new List<datosViewModel>();
+
+            datagridExcel1.DataSource = list;
+
+            List<datosViewModel> list2 = new List<datosViewModel>();
+
+            datagridExcel2.DataSource = list2;
             try
             {
                 SaveFileDialog saveD = new SaveFileDialog();
-                saveD.Filter = "Excel Files|.xls;.xlsx";
+                saveD.Filter = "Libro de Excel|.xlsx";
+                saveD.Title = "Guardar Excel";
                 saveD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
                 if (saveD.ShowDialog() == DialogResult.OK)
                 {
-                    SLDocument originalDoc = new SLDocument();
-                    SLDocument sheetDoc = new SLDocument();
+                    SLDocument originalDoc = new SLDocument(archivox1.Text);
+                    SLDocument sheetDoc = new SLDocument(archivox2.Text);
 
 
-                    int iRow = 1;
+                    //int iRow = 1;
 
-                    while (!string.IsNullOrEmpty(originalDoc.GetCellValueAsString(iRow, 1)))
-                    {
+                    //while (!string.IsNullOrEmpty(originalDoc.GetCellValueAsString(iRow, 1)))
+                    //{
+                        sheetDoc.SetCellValue("A1",originalDoc.GetCellValueAsString("A1"));
+                        sheetDoc.SetCellValue("A2", originalDoc.GetCellValueAsString("A2"));
+                    
 
-                    }
-
-                    sheetDoc.SaveAs("MahNewShoes.xlsx");
+                    sheetDoc.SaveAs(saveD.FileName);
                     MessageBox.Show("Archivo guardado existosamente en " + saveD.FileName);
                 }
                 else
