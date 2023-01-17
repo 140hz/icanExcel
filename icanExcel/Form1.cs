@@ -1,6 +1,7 @@
 //Elaborado por Oscar Abraham Arroyo Gómez
 //b7sed
 //Lunes 24 de Octubre del 2022
+//Incompleto 
 
 using DocumentFormat.OpenXml.Wordprocessing;
 using SpreadsheetLight;
@@ -16,8 +17,7 @@ namespace icanExcel
         public mainForm()
         {
             InitializeComponent();
-            /*MessageBox.Show("¿Primera vez utilizando esta herramienta? Da click en el botón AYUDA para más información.", "Bienvenido",
-            MessageBoxButtons.OK, MessageBoxIcon.Warning);*/
+            
             
         }
 
@@ -93,30 +93,31 @@ namespace icanExcel
                 {
                     path = of.FileName;
                     archivox1.Text = path;
+                    
                     SLDocument sl = new SLDocument(path);
 
-                    int iRow = 2;
-                    List<datosViewModel> list = new List<datosViewModel>();
+                     int iRow = 2;
+                     List<datosViewModel> list = new List<datosViewModel>();
 
 
-                    while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
-                    {
-                        //string fecha = "2005/05/05 22:12 PM";
-                        datosViewModel bDatos = new datosViewModel();
-                        bDatos.ID = sl.GetCellValueAsString(iRow, 1);
-                        bDatos.Email = sl.GetCellValueAsString(iRow, 2);
-                        bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 16);
-                        bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 25);
-                        bDatos.Fulfilled_at = sl.GetCellValueAsString(iRow, 6);
-                        //DateTime oDate = DateTime.ParseExact(fecha, "yyyy/MM/dd HH:mm tt", System.Globalization.CultureInfo.InvariantCulture);
-                        //box1.Text = (oDate.ToString());
-                        bDatos.Notes = sl.GetCellValueAsString(iRow, 45);
+                     while (!string.IsNullOrEmpty(sl.GetCellValueAsString(iRow, 1)))
+                     {
+                         //string fecha = "2005/05/05 22:12 PM";
+                         datosViewModel bDatos = new datosViewModel();
+                         bDatos.ID = sl.GetCellValueAsString(iRow, 1);
+                         bDatos.Email = sl.GetCellValueAsString(iRow, 2);
+                         bDatos.Billing_Phone = sl.GetCellValueAsString(iRow, 16);
+                         bDatos.Billing_Name = sl.GetCellValueAsString(iRow, 25);
+                         bDatos.Fulfilled_at = sl.GetCellValueAsString(iRow, 6);
+                         //DateTime oDate = DateTime.ParseExact(fecha, "yyyy/MM/dd HH:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+                         //box1.Text = (oDate.ToString());
+                         bDatos.Notes = sl.GetCellValueAsString(iRow, 45);
 
-                        list.Add(bDatos);
-                        iRow++;
-                    }
+                         list.Add(bDatos);
+                         iRow++;
+                     }
 
-                    datagridExcel1.DataSource = list;
+                     datagridExcel1.DataSource = list; 
                 }
             }
             catch (Exception ex)
@@ -142,8 +143,9 @@ namespace icanExcel
                 {
                     path2 = of.FileName;
                     archivox2.Text = path2;
+                    
                     SLDocument sl = new SLDocument(path2);
-
+                    
                     int iRow = 2;
                     List<datosViewModel> list = new List<datosViewModel>();
 
