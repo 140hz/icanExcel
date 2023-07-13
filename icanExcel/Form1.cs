@@ -1,5 +1,5 @@
-//Elaborado por Oscar Abraham Arroyo Gómez
-//b7sed
+//Elaborado por Oscar Abraham Arroyo Gomez
+//terqoo
 //Lunes 24 de Octubre del 2022
 //Incompleto 
 
@@ -33,25 +33,31 @@ namespace icanExcel
             try
             {
                 SaveFileDialog saveD = new SaveFileDialog();
-                saveD.Filter = "Libro de Excel|.xlsx";
+                saveD.Filter = "Excel Files|*.xls;*.xlsx|CSV files (*.csv)|*.csv";
                 saveD.Title = "Guardar Excel";
                 saveD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
                 if (saveD.ShowDialog() == DialogResult.OK)
                 {
+                    
                     SLDocument originalDoc = new SLDocument(archivox1.Text);
                     SLDocument sheetDoc = new SLDocument(archivox2.Text);
 
 
-                    //int iRow = 1;
+                    int iRow = 1;
 
-                    //while (!string.IsNullOrEmpty(originalDoc.GetCellValueAsString(iRow, 1)))
-                    //{
-                        sheetDoc.SetCellValue("A1",originalDoc.GetCellValueAsString("A1"));
-                        sheetDoc.SetCellValue("A2", originalDoc.GetCellValueAsString("A2"));
-                    
+                    while (!string.IsNullOrEmpty(originalDoc.GetCellValueAsString(iRow, 1)))
+                    {
+                        sheetDoc.SetCellValue("A1", "Hola");
+                        sheetDoc.SetCellValue("A2", "Buenas");
+
+                        //sheetDoc.SetCellValue("A2", originalDoc.GetCellValueAsString("A2"));
+                        //iRow++;
+                    }
 
                     sheetDoc.SaveAs(saveD.FileName);
+                    sheetDoc.CloseWithoutSaving(); // Cerrar el documento antes de abrirlo nuevamente
+
                     MessageBox.Show("Archivo guardado existosamente en " + saveD.FileName);
                 }
                 else
